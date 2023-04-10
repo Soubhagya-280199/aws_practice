@@ -1,18 +1,21 @@
 import json
 
-
 def lambda_handler(event, context):
-    # print the event which trggred by SQS
-    print("SQS triggred lambda")
-    print("\n")
-    print(event)
-
-    # return statement
-    return {
-        'statusCode': 200,
-        'body': json.dumps('SUccessfull')
-    }
-
+    
+    #print the event which trggred by SQS
+    print("SQS triggred lambda") 
+    
+    results = event['Records']
+    
+    for result in results:
+        print(result['body'])
+    
+    
+    #return statement
+    # return {
+    #     'statusCode': 200,
+    #     'body': json.dumps('SUccessfull')
+    # }
 
 
 
