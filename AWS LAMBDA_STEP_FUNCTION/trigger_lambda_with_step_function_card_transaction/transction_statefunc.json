@@ -1,0 +1,31 @@
+{
+  "Comment" : "Transaction Processor State Machine",
+  "StartAt" : "ProcessTransaction",
+  "States" : {
+    "ProcessTransaction" : {
+      "Type" : "Choice",
+      "Choices": [
+        {
+          "Variable" : "$.TransactionType",
+          "StringEquals" : "PURCHASE",
+          "Next" : "ProcessPurchase"
+        },
+        {
+          "Variable" : "$.TransactionType",
+          "StringEquals" : "REFUND",
+          "Next" : "ProcessRefund"
+        }
+      ]
+    },
+    "ProcessPurchase" : {
+      "Type": "Task",
+      "Resource" : "arn:aws:lambda:ap-south-1:872877685050:function:lambda_for_purchase",
+      "End" : true
+    },
+    "ProcessRefund" : {
+      "Type" : "Task",
+      "Resource" : "arn:aws:lambda:ap-south-1:872877685050:function:lambda_for_refund",
+      "End" : true
+    }
+  }
+}
