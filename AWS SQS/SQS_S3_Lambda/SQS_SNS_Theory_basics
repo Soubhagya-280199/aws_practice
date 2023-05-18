@@ -1,0 +1,24 @@
+    What is Amazon SQS ?
+--> Simple Queue Services - 2006
+   - Offers Async Message based Communication as opposed to API calls
+   - Scalable, Highly Available, Fully Managed and Cost Effective
+   - Useful in a variety of context:
+            > Data Processing
+            > Real time Event Processing
+            > Ad-Hoc Job Queueing
+   - Message usually in JSON format, and limit is limited 256 kb/ message
+   - Publishers/Producers (Enqueue) helps message to get into th queue.
+   - Processors/Consumers (Dequeue) helps message to come out.
+
+    Message Processing Workflow :
+--> 1. A Message is published to the queue.
+    2. Message is claimed by the receiver and visibility timeout countdown starts
+        -Visibility countdown, is a time threshold when a Message is claimed by a receiver/thread at that time it
+          allows the thread/ receiver to process it in a particular time, if it doesn't amke the process succeffully
+          complete with in the time then the message will be unlocked and again it will appear in the Queue.
+    3. a. Message is processed and Deleted by thr consumer
+       b else. Visibility timeout expires and message returned to queue.
+
+    Types of Queue :
+ --> Standard queue : Order is not guaranteed  (Less Expensive)
+     FIFO queue : Order is there, so that message will process in a order.(Expensive as compare to Standard one more than 25%)
